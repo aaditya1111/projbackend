@@ -8,23 +8,23 @@ const uuidv1 = require('uuid/v1');
        type: String,
        required: true,
        maxlength: 32,
-       trime: true
+       trim: true
      },
      lastname: {
        type: String,
        required: true,
        maxlength: 32,
-       trime: true
+       trim: true
      },
      email: {
        type: String,
-       trime: true,
+       trim: true,
        required: true,
        unique: true
      },
      userinfo: {
        type: String,
-       trime: true
+       trim: true
      },
      encry_password: {
        type: String,
