@@ -25,9 +25,3 @@ router.post(
 router.get("/signout", signout);
 
 module.exports = router;
-
-
-/*router.get("/testroute", isSignedIn, (req, res) => {
-    res.json(req.auth);
-
-})*/
