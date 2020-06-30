@@ -1,5 +1,8 @@
 const Category = require("../models/category");
 
+
+//All methods goes here
+
 exports.getCategoryById = (req, res, next, id) => {
   Category.findById(id).exec((err, cate) => {
     if (err) {
