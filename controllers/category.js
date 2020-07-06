@@ -1,8 +1,6 @@
 const Category = require("../models/category");
 
-
-//All methods goes here
-
+//middleware
 exports.getCategoryById = (req, res, next, id) => {
   Category.findById(id).exec((err, cate) => {
     if (err) {
@@ -15,6 +13,7 @@ exports.getCategoryById = (req, res, next, id) => {
   });
 };
 
+//All methods goes here
 exports.createCategory = (req, res) => {
   const category = new Category(req.body);
   category.save((err, category) => {
