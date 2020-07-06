@@ -162,3 +162,40 @@ exports.getAllProducts = (req, res) => {
             res.json(products)
         })
 }
+
+//To populate categories at Admin Panel
+exports.getAllUniqueCategories = (req, res) => {
+    Product.distinct("category", {}, (err, category) => {
+        if(err){
+            return res.status(400).json({
+                error: "No Category Found"
+            })
+        }
+        res.json(category);
+    });
+};
+
+
+
+//middleware to update stock and sold
+
+exports.updateStock = (req, res, next) => {
+    let myOperations = req.body.order.products.map(prod => {
+        return {
+            updateOne : {
+                filter: { _id: prod._id},
+                update: { $inc: { stock: -prod.count, sold: +prod,count} }
+            }
+        };
+    });
+
+    Product.bulkWrite(myOperations, {}, (err, products) => {
+        if(err){
+            return res.status(400).json({
+                error: "Updation of Stock and Sold products is failed"
+            })
+        }
+        next();
+    })
+
+}
