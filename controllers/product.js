@@ -32,9 +32,9 @@ exports.createProduct = (req, res) => {
       });
     }
     //destructure the fields
-    const { name, description, price, category, stock } = fields;
+    const { name, description, price, stock, category } = fields;
 
-    if (!name || !description || !price || !category || !stock) {
+    if (!name || !description || !price || !stock || !category) {
       return res.status(400).json({
         error: "Please include all fields"
       });
@@ -44,7 +44,7 @@ exports.createProduct = (req, res) => {
 
     //handle file here
     if (file.photo) {
-      if (file.photo.size > 3000000) {
+      if (file.photo.size > 3200000) {
         return res.status(400).json({
           error: "File size too big!"
         });
@@ -117,7 +117,7 @@ exports.updateProduct = (req, res) => {
 
     //handle file here
     if (file.photo) {
-      if (file.photo.size > 3000000) {
+      if (file.photo.size > 3200000) {
         return res.status(400).json({
           error: "File size too big!"
         });
@@ -148,7 +148,7 @@ exports.getAllProducts = (req, res) => {
 
   Product.find()
     .select("-photo")
-    .populate("category")
+    //.populate("category")
     .sort([[sortBy, "asc"]])
     .limit(limit)
     .exec((err, products) => {

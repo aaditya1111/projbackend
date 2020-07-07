@@ -19,6 +19,7 @@ router.param("userId", getUserById);
 router.param("productId", getProductById);
 
 //all of actual routes
+
 //create route
 router.post(
   "/product/create/:userId",
